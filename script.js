@@ -16,7 +16,6 @@ async function processSpotifyLink() {
         let trackData = { title: "", artist: "", albumArt: "https://via.placeholder.com/150" };
         let lyricsData = null;
 
-        // Deteksi Otomatis: Apakah input ini Link Spotify atau Teks Pencarian Manual?
         const isLink = inputVal.includes('spotify.com') || inputVal.startsWith('http');
 
         if (isLink) {
@@ -74,11 +73,9 @@ async function processSpotifyLink() {
                 lyricsData = { lyrics: selectedTrack.plainLyrics, title: selectedTrack.trackName, artist: selectedTrack.artistName };
             }
             
-            // Masukkan metadata dari lirik yang dipilih
             trackData.title = lyricsData ? lyricsData.title : selectedTrack.trackName;
             trackData.artist = lyricsData ? lyricsData.artist : selectedTrack.artistName;
 
-            // BONUS: Tarik Cover Album otomatis via iTunes biar gak kosong
             try {
                 const itunesRes = await fetch("https://itunes.apple.com/search?term=" + encodeURIComponent(trackData.title + " " + trackData.artist) + "&entity=song&limit=1");
                 const itunesData = await itunesRes.json();
@@ -99,16 +96,15 @@ async function processSpotifyLink() {
             return;
         }
 
-        // 3. Update UI dengan nama Artis + Judul resmi dari lirik
         trackData.title = lyricsData.title;
         trackData.artist = lyricsData.artist;
         updateTrackInfoUI(trackData);
 
-        // 4. Terjemahkan dan Deteksi Bahasa
+        // Terjemahkan dan Deteksi Bahasa
         setStatus("Menerjemahkan & memproses pelafalan...");
         const translateData = await translateAndDetectLang(lyricsData.lyrics);
         
-        // 5. Tampilkan lirik
+        // Tampilkan lirik
         updateLyricsUI(translateData, lyricsData.lyrics);
 
         setStatus("✅ Selesai!");
@@ -159,7 +155,7 @@ async function fetchSpotifyOembed(url) {
 }
 
 // ==========================================
-// 🔥 UI CUSTOM LIST LAGU (Universal) 🔥
+// UI CUSTOM LIST LAGU (Universal)
 // ==========================================
 function askUserToSelectTrack(title, tracks, customMessage) {
     return new Promise((resolve) => {
