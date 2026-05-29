@@ -6,6 +6,11 @@
 }
 
 body {
+    /* Sihir Flexbox agar konten merentang sejauh tinggi layar */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
     background-color: #121212;
     color: #ffffff;
 }
@@ -158,4 +163,47 @@ header {
     .lyrics-container {
         height: 70vh; 
     }
+}
+
+/* ==========================================
+   FOOTER CREDIT STYLES
+========================================== */
+.footer-credit {
+    /* Sihir Flexbox buat bikin atas-bawah */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Ngatur jarak antara teks dan logo IG */
+    
+    padding: 30px 20px;
+    color: #b3b3b3;
+    font-size: 14px;
+    border-top: 1px solid #282828;
+    
+    /* Otomatis dorong footer ke paling bawah */
+    margin-top: auto; 
+}
+
+.footer-credit strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.ig-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: #1db954; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.ig-link:hover {
+    color: #1ed760; 
+}
+
+.ig-icon {
+    display: inline-block;
+    vertical-align: middle;
 }
