@@ -6,7 +6,6 @@
 }
 
 body {
-    /* Sihir Flexbox agar konten merentang sejauh tinggi layar */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -31,7 +30,7 @@ header {
     border-radius: 20px;
     border: none;
     outline: none;
-    max-width: 100%; /* Mencegah input kebesaran di layar kecil */
+    max-width: 100%;
 }
 
 .search-box button {
@@ -52,6 +51,7 @@ header {
 
 #player-section {
     max-width: 900px;
+    width: 100%;
     margin: 30px auto;
     padding: 20px;
 }
@@ -83,19 +83,18 @@ header {
 .lyrics-container {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 30px;
     background-color: #282828;
     border-radius: 10px;
     height: 65vh;
     overflow-y: auto;
+    width: 100%; 
 }
-
-/* Kotak pembungkus untuk setiap baris/bait lirik */
 .lyric-block {
     display: flex;
     flex-direction: column;
-    gap: 4px; /* Jarak antar terjemahan di baris yang sama */
-    margin-bottom: 25px; /* Jarak dengan bait lirik berikutnya */
+    gap: 4px;
+    margin-bottom: 25px;
 }
 
 .lyric-original {
@@ -107,15 +106,13 @@ header {
 .lyric-romaji {
     font-size: 15px;
     font-style: italic;
-    color: #1DB954; /* Hijau khas Spotify */
+    color: #1DB954;
 }
 
 .lyric-translation {
     font-size: 15px;
-    color: #a7a7a7; /* Abu-abu terang agar beda dengan lirik asli */
+    color: #a7a7a7;
 }
-
-/* Custom Scrollbar biar makin mirip Spotify */
 ::-webkit-scrollbar { 
     width: 8px; 
 }
@@ -132,7 +129,6 @@ header {
    ========================================= */
 
 @media (max-width: 768px) {
-    /* Merapikan form pencarian agar turun ke bawah */
     .search-box {
         display: flex;
         flex-direction: column;
@@ -149,13 +145,11 @@ header {
         width: 100%;
     }
     
-    /* Info lagu dibuat rata tengah agar lebih simetris di HP */
     .track-info {
         flex-direction: column;
         text-align: center;
     }
 
-    /* Ukuran font diperkecil sedikit agar tidak kepanjangan */
     .lyric-original { font-size: 16px; }
     .lyric-romaji { font-size: 14px; }
     .lyric-translation { font-size: 14px; }
@@ -169,18 +163,16 @@ header {
    FOOTER CREDIT STYLES
 ========================================== */
 .footer-credit {
-    /* Sihir Flexbox buat bikin atas-bawah */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px; /* Ngatur jarak antara teks dan logo IG */
+    gap: 8px;
     
     padding: 30px 20px;
     color: #b3b3b3;
     font-size: 14px;
     border-top: 1px solid #282828;
     
-    /* Otomatis dorong footer ke paling bawah */
     margin-top: auto; 
 }
 
