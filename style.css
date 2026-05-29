@@ -26,6 +26,7 @@ header {
     border-radius: 20px;
     border: none;
     outline: none;
+    max-width: 100%; /* Mencegah input kebesaran di layar kecil */
 }
 
 .search-box button {
@@ -45,7 +46,7 @@ header {
 }
 
 #player-section {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 30px auto;
     padding: 20px;
 }
@@ -66,45 +67,95 @@ header {
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-.lyrics-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.lyrics-column {
-    background-color: #282828;
-    padding: 20px;
-    border-radius: 10px;
-    line-height: 1.8;
-    white-space: pre-wrap; 
-    height: 60vh;
-    overflow-y: auto;
-}
-
-.lyrics-column h4 {
-    color: #1DB954;
-    margin-bottom: 15px;
-    border-bottom: 1px solid #444;
-    padding-bottom: 5px;
-    position: sticky;
-    top: 0;
-    background-color: #282828;
-}
-
 .hidden {
     display: none !important;
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #121212; }
-::-webkit-scrollbar-thumb { background: #1DB954; border-radius: 4px; }
+/* =========================================
+   TAMPILAN LIRIK BARU (BARIS PER BARIS)
+   ========================================= */
+
+.lyrics-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #282828;
+    border-radius: 10px;
+    height: 65vh;
+    overflow-y: auto;
+}
+
+/* Kotak pembungkus untuk setiap baris/bait lirik */
+.lyric-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Jarak antar terjemahan di baris yang sama */
+    margin-bottom: 25px; /* Jarak dengan bait lirik berikutnya */
+}
+
+.lyric-original {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.lyric-romaji {
+    font-size: 15px;
+    font-style: italic;
+    color: #1DB954; /* Hijau khas Spotify */
+}
+
+.lyric-translation {
+    font-size: 15px;
+    color: #a7a7a7; /* Abu-abu terang agar beda dengan lirik asli */
+}
+
+/* Custom Scrollbar biar makin mirip Spotify */
+::-webkit-scrollbar { 
+    width: 8px; 
+}
+::-webkit-scrollbar-track { 
+    background: #121212; 
+}
+::-webkit-scrollbar-thumb { 
+    background: #1DB954; 
+    border-radius: 4px; 
+}
+
+/* =========================================
+   RESPONSIF UNTUK HP
+   ========================================= */
 
 @media (max-width: 768px) {
-    .lyrics-container {
-        grid-template-columns: 1fr;
+    /* Merapikan form pencarian agar turun ke bawah */
+    .search-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
     }
-    .lyrics-column {
-        height: auto;
+    
+    .search-box input {
+        width: 100%;
+    }
+
+    .search-box button {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    /* Info lagu dibuat rata tengah agar lebih simetris di HP */
+    .track-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Ukuran font diperkecil sedikit agar tidak kepanjangan */
+    .lyric-original { font-size: 16px; }
+    .lyric-romaji { font-size: 14px; }
+    .lyric-translation { font-size: 14px; }
+    
+    .lyrics-container {
+        height: 70vh; 
     }
 }
